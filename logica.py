@@ -9,5 +9,13 @@ def agendar_desligamento(horas, minutos, botão):
 
         messagebox.showinfo("Desligamento Agendado", f"O computador será desligado em {horas} horas e {minutos} minutos.")
 
+        botao.config(text="Cancelar Agendamento", command=lambda: cancelar_agendamento(botao))
+
     except ValueError:
         messagebox.showerror("Erro", "Por favor, insira um numero válido.")
+
+def cancelar_agendamento(botao):
+    os.system("shutdown /a")
+    messagebox.showinfo("Agendamento Cancelado", "O agendamento foi cancelado.")
+
+    botao.config(text="Agendar", command=lambda: botao.event_generate("<<Agendar>>"))
